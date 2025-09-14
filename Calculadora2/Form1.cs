@@ -18,7 +18,7 @@ namespace Calculadora2
         {
             txtResultado.Focus();
         }
-        
+
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
         {
             char tecla = e.KeyChar;
@@ -26,7 +26,7 @@ namespace Calculadora2
             if (char.IsDigit(tecla) || "+-*/.".Contains(tecla))
             {
                 txtResultado.Text += tecla;
-            
+
             }
         }
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -179,4 +179,5 @@ namespace Calculadora2
 
 
         }
+    }
 }
