@@ -147,7 +147,7 @@ namespace Calculadora2
                 // Verifica se há tentativa de divisão por zero
                 if (ContemDivisaoPorZero(expressao))
                 {
-                    throw new DivideByZeroException("Divisão por zero não é permitida.");
+                    throw new DivideByZeroException("Divisão por zero não é permitida!");
                 }
 
                 var resultado = new DataTable().Compute(expressao, null);
