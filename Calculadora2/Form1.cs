@@ -9,9 +9,16 @@ namespace Calculadora2
         {
             InitializeComponent();
             this.KeyPreview = true;
+            this.Shown += Form1_Shown;
         }
 
 
+
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            txtResultado.Focus();
+        }
+        
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
         {
             char tecla = e.KeyChar;
