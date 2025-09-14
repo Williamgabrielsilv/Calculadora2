@@ -33,7 +33,7 @@ namespace Calculadora2
         {
             if (e.KeyCode == Keys.Enter)
             {
-                btnIgual.PerformClick(); // Simula o clique do bot„o igual
+                btnIgual.PerformClick(); // Simula o clique do bot√£o igual
                 e.Handled = true;
             }
             else if (e.KeyCode == Keys.Back)
@@ -103,17 +103,17 @@ namespace Calculadora2
             txtResultado.Text += "+";
         }
 
-        private void btnSubtraÁ„o_Click(object sender, EventArgs e)
+        private void btnSubtra√ß√£o_Click(object sender, EventArgs e)
         {
             txtResultado.Text += "-";
         }
 
-        private void btnMultiplicaÁ„o_Click(object sender, EventArgs e)
+        private void btnMultiplica√ß√£o_Click(object sender, EventArgs e)
         {
             txtResultado.Text += "*";
         }
 
-        private void btnDivis„o_Click(object sender, EventArgs e)
+        private void btnDivis√£o_Click(object sender, EventArgs e)
         {
             txtResultado.Text += "/";
         }
@@ -144,10 +144,10 @@ namespace Calculadora2
             {
                 string expressao = txtResultado.Text;
 
-                // Verifica se h· tentativa de divis„o por zero
+                // Verifica se h√° tentativa de divis√£o por zero
                 if (ContemDivisaoPorZero(expressao))
                 {
-                    throw new DivideByZeroException("Divis„o por zero n„o È permitida.");
+                    throw new DivideByZeroException("Divis√£o por zero n√£o √© permitida.");
                 }
 
                 var resultado = new DataTable().Compute(expressao, null);
@@ -159,25 +159,24 @@ namespace Calculadora2
             }
             catch (DivideByZeroException)
             {
-                MessageBox.Show("VocÍ n„o pode dividir por zero!", "Erro de c·lculo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Voc√™ n√£o pode dividir por zero!", "Erro de c√°lculo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtResultado.Text = "";
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Express„o inv·lida!\n" + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Express√£o inv√°lida!\n" + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtResultado.Text = "";
             }
         }
         private bool ContemDivisaoPorZero(string expressao)
         {
-            // Remove espaÁos para facilitar a an·lise
+            // Remove espa√ßos para facilitar a an√°lise
             expressao = expressao.Replace(" ", "");
 
-            // Verifica se h· "/0" ou "/0." (ex: 1/0, 1/0.0)
+            // Verifica se h√° "/0" ou "/0." (ex: 1/0, 1/0.0)
             return expressao.Contains("/0") || expressao.Contains("/0.");
 
 
 
         }
-}
 }
