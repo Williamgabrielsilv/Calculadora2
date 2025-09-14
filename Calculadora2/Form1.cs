@@ -174,7 +174,7 @@ namespace Calculadora2
             expressao = expressao.Replace(" ", "");
 
             // Verifica se há "/0" ou "/0." (ex: 1/0, 1/0.0)
-            return expressao.Contains("/0") || expressao.Contains("/0.");
+            return expressao.Contains("/0");
 
 
 
