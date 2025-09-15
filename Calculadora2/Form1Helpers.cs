@@ -8,7 +8,7 @@
             if (expressao.Contains("/0") || expressao.Contains("/0.") || expressao.Contains("/.0"))
                 return true;
 
-            /*// Procura por divisões por zero explícitas
+            // Procura por divisões por zero explícitas
             for (int i = 0; i < expressao.Length - 1; i++)
             {
                 if (expressao[i] == '/')
@@ -30,7 +30,7 @@
                 }
             }
 
-            return false;*/
+            return false;
         }
     }
 }
