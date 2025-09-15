@@ -171,7 +171,7 @@ namespace Calculadora2
         private bool ContemDivisaoPorZero(string expressao)
         {
             expressao = expressao.Replace(" ", "");
-
+            
             // Procura por divisões por zero explícitas
             for (int i = 0; i < expressao.Length - 1; i++)
             {
