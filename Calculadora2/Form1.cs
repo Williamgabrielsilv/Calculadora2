@@ -1,6 +1,3 @@
-
-using System.Data;
-using System;
 namespace Calculadora2
 {
     public partial class Form1 : Form
@@ -52,79 +49,14 @@ namespace Calculadora2
             }
         }
 
-        private void btn0_Click(object sender, EventArgs e)
+        private void btn_Click(object sender, EventArgs e)
         {
-            txtResultado.Text += "0";
-        }
+            var totalLines = txtResultado.Lines.Length;
+            if (totalLines > 1)
+                txtResultado.Lines = [.. txtResultado.Lines.Skip(totalLines - 1)];
 
-        private void btn1_Click(object sender, EventArgs e)
-        {
-            txtResultado.Text += "1";
-        }
-
-        private void btn2_Click(object sender, EventArgs e)
-        {
-            txtResultado.Text += "2";
-        }
-
-        private void btn3_Click(object sender, EventArgs e)
-        {
-            txtResultado.Text += "3";
-        }
-
-        private void btn4_Click(object sender, EventArgs e)
-        {
-            txtResultado.Text += "4";
-        }
-
-        private void btn5_Click(object sender, EventArgs e)
-        {
-            txtResultado.Text += "5";
-        }
-
-        private void btn6_Click(object sender, EventArgs e)
-        {
-            txtResultado.Text += "6";
-        }
-
-        private void btn7_Click(object sender, EventArgs e)
-        {
-            txtResultado.Text += "7";
-        }
-
-        private void btn8_Click(object sender, EventArgs e)
-        {
-            txtResultado.Text += "8";
-        }
-
-        private void btn9_Click(object sender, EventArgs e)
-        {
-            txtResultado.Text += "9";
-        }
-
-        private void btnSoma_Click(object sender, EventArgs e)
-        {
-            txtResultado.Text += "+";
-        }
-
-        private void btnSubtração_Click(object sender, EventArgs e)
-        {
-            txtResultado.Text += "-";
-        }
-
-        private void btnMultiplicação_Click(object sender, EventArgs e)
-        {
-            txtResultado.Text += "*";
-        }
-
-        private void btnDivisão_Click(object sender, EventArgs e)
-        {
-            txtResultado.Text += "/";
-        }
-
-        private void btnPonto_Click(object sender, EventArgs e)
-        {
-            txtResultado.Text += ".";
+            Button senderEv = (Button)sender;
+            txtResultado.Text += senderEv.Text;
         }
 
         private void btnApagar_Click(object sender, EventArgs e)
@@ -148,16 +80,9 @@ namespace Calculadora2
             {
                 string expressao = txtResultado.Text;
 
-                // Verifica se há tentativa de divisão por zero
-                // if (ContemDivisaoPorZero(expressao))
-                // {
-                //     throw new DivideByZeroException("Divisão por zero não é permitida");
-                // }
-
                 var resultado = _dtWrapper.ComputeExpression(expressao);
-                // var resultado = new DataTable().Compute(expressao, null);
-                txtResultado.Text = resultado.ToString();
 
+                txtResultado.Text = txtResultado.Text + Environment.NewLine + resultado;
                 // Posiciona o cursor no fim
                 txtResultado.SelectionStart = txtResultado.Text.Length;
                 txtResultado.SelectionLength = 0;
@@ -173,39 +98,6 @@ namespace Calculadora2
                 txtResultado.Text = "";
             }
         }
-        private bool ContemDivisaoPorZero(string expressao)
-        {
-            expressao = expressao.Replace(" ", "");
-            
-            // Procura por divisões por zero explícitas
-            for (int i = 0; i < expressao.Length - 1; i++)
-            {
-                if (expressao[i] == '/')
-                {
-                    string numero = "";
-                    int j = i + 1;
-
-                    while (j < expressao.Length && (char.IsDigit(expressao[j]) || expressao[j] == '.'))
-                    {
-                        numero += expressao[j];
-                        j++;
-                    }
-
-                    if (double.TryParse(numero, out double valor))
-                    {
-                        if (valor == 0.0)
-                            return true;
-                    }
-                }
-            }
-
-            return false;
-        }
-
-
-
-
-
     }
 }
 
