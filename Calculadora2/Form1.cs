@@ -5,11 +5,15 @@ namespace Calculadora2
 {
     public partial class Form1 : Form
     {
-        public Form1()
+        private readonly IDataTableWrapper _dtWrapper;
+        public Form1(IDataTableWrapper dtWrapper)
         {
             InitializeComponent();
             this.KeyPreview = true;
             this.Shown += Form1_Shown;
+
+            //injecting service dependency
+            _dtWrapper = dtWrapper;
         }
 
 
@@ -145,12 +149,13 @@ namespace Calculadora2
                 string expressao = txtResultado.Text;
 
                 // Verifica se há tentativa de divisão por zero
-                if (ContemDivisaoPorZero(expressao))
-                {
-                    throw new DivideByZeroException("Divisão por zero não é permitida");
-                }
+                // if (ContemDivisaoPorZero(expressao))
+                // {
+                //     throw new DivideByZeroException("Divisão por zero não é permitida");
+                // }
 
-                var resultado = new DataTable().Compute(expressao, null);
+                var resultado = _dtWrapper.ComputeExpression(expressao);
+                // var resultado = new DataTable().Compute(expressao, null);
                 txtResultado.Text = resultado.ToString();
 
                 // Posiciona o cursor no fim
