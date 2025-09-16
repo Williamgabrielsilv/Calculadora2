@@ -26,9 +26,10 @@ namespace Calculadora2
         {
             char tecla = e.KeyChar;
 
+            // Permite números e operadores (+ - * / . ,)
             if (char.IsDigit(tecla) || "+-*/.,".Contains(tecla))
             {
-                // Para garantir que só tem uma vírgula por número, você pode melhorar depois
+                // Remove linha anterior (resultado) ao iniciar nova operação
                 if (txtResultado.Text.Contains(Environment.NewLine))
                 {
                     var linhas = txtResultado.Text
@@ -42,7 +43,25 @@ namespace Calculadora2
                 txtResultado.SelectionLength = 0;
                 e.Handled = true;
             }
+            else if (tecla == (char)Keys.Back)
+            {
+                // Trata backspace manualmente
+                if (!string.IsNullOrEmpty(txtResultado.Text))
+                {
+                    txtResultado.Text = txtResultado.Text.Remove(txtResultado.Text.Length - 1);
+                    txtResultado.SelectionStart = txtResultado.Text.Length;
+                    txtResultado.SelectionLength = 0;
+                }
+                e.Handled = true;
+            }
+            else if (!char.IsControl(tecla))
+            {
+                // Bloqueia letras e outros símbolos inválidos
+                e.Handled = true;
+                System.Media.SystemSounds.Beep.Play(); // opcional: som ao tentar digitar letra
+            }
         }
+
 
 
 
