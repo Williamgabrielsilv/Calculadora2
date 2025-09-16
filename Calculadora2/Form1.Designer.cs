@@ -194,7 +194,7 @@
             btnPonto.Name = "btnPonto";
             btnPonto.Size = new Size(65, 64);
             btnPonto.TabIndex = 17;
-            btnPonto.Text = ".";
+            btnPonto.Text = ",";
             btnPonto.UseVisualStyleBackColor = true;
             btnPonto.Click += btn_Click;
             // 
@@ -204,7 +204,7 @@
             btn0.Name = "btn0";
             btn0.Size = new Size(65, 64);
             btn0.TabIndex = 18;
-            btn0.Text = "0";            
+            btn0.Text = "0";
             btn0.UseVisualStyleBackColor = true;
             btn0.Click += btn_Click;
             // 
